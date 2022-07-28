@@ -23,6 +23,34 @@
       name: nginx
       state: latest
 
+  - name: start nginx
+    become: yes
+    service:
+        name: nginx
+        state: started
+
+  - name: Copy website files to the server's document root
+    become: yes
+    copy:
+      src: /home/debian/ansible-practice/provisioning/index.html
+      dest: /var/www/html
+      mode: preserve
+
+  - name: copy the nginx config file and restart nginx
+    become: yes
+    template:
+      src: /home/debian/ansible-practice/provisioning/default
+      dest: /etc/nginx/sites-available/default
+    notify: restart nginx
+
+
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+
 # - name: ensure nginx is at the latest version
 #   apt: name=nginx state=latest
 #   become: yes
