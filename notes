@@ -1,0 +1,9 @@
+
+Now that Ansible knows where to run, you can tell it what you want it to run.
+
+ansible-playbook -i provisioning/inventory.yaml provisioning/playbook.yaml -u ubuntu --ask-pass
+ansible all -i provisioning/inventory.yaml -m ping -u username --ask-pass
+
+approve sudo :
+ansible-playbook -i provisioning/inventory.yaml provisioning/playbook.yaml -u ubuntu --ask-pass --ask-become-pass
+ansible-playbook -i provisioning/inventory.yaml provisioning/playbook.yaml -u ubuntu -kK
