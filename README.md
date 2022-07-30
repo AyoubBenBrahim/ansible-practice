@@ -2,4 +2,4 @@
 
 two VMs:
 debian as server where i installed ansible, 
-ubuntu as the client machine..
+ubuntu as the cibled/client machine..
